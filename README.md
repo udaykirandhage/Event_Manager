@@ -1,4 +1,3 @@
-Here's your complete, clean, **copy-ready** `README.md` with all formatting fixed (especially the code block and diagram formatting issues):
 
 ---
 
@@ -41,7 +40,6 @@ An Express.js + SQLite backend system that enables authenticated users to view e
 ├── package.json
 └── .env
 
-```
 
 ---
 
