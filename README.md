@@ -19,11 +19,10 @@ An Express.js + SQLite backend system that enables authenticated users to view e
 
 ---
 
-## 🗂️ Folder Structure
+🗂️ Folder Structure
 
 ```
-
-<pre> ├── controller/ │ ├── usercontroller.js │ └── userEventcontroller.js ├── Email/ │ └── email.js ├── Middlewares/ │ └── Jwttoken.js ├── Model/ │ ├── EventManagement.db │ └── db.js ├── routes/ │ ├── userroute.js │ └── userEventroutes.js ├── validator/ │ └── Joi.validator.js ├── app.js ├── package.json └── .env </pre>
+├── controller/ │ ├── usercontroller.js │ └── userEventcontroller.js ├── Email/ │ └── email.js ├── Middlewares/ │ └── Jwttoken.js ├── Model/ │ ├── EventManagement.db │ └── db.js ├── routes/ │ ├── userroute.js │ └── userEventroutes.js ├── validator/ │ └── Joi.validator.js ├── app.js ├── package.json └── .env
 
 ```
 
@@ -34,8 +33,16 @@ An Express.js + SQLite backend system that enables authenticated users to view e
 ### 📘 Tables Overview
 
 ```
-
-<pre> +---------------------+ +------------------------+ +----------------------+ | user | | registration | | events | +---------------------+ +------------------------+ +----------------------+ | id (PK) |◄───────────┤ user_id (FK) ├───────────►| id (PK) | | name | | event_id (FK) | | event_code (UNIQUE) | | email (UNIQUE) | | registration_time | | event_name | | password | | id (PK) | | event_description | | age | +------------------------+ | event_date | | phone_num | | location | +---------------------+ +----------------------+ </pre>                                             +----------------------+
++---------------------+            +------------------------+            +----------------------+
+|       user          |            |      registration       |            |       events         |
++---------------------+            +------------------------+            +----------------------+
+| id (PK)             |◄───────────┤ user_id (FK)           ├───────────►| id (PK)              |
+| name                |            | event_id (FK)          |            | event_code (UNIQUE)  |
+| email (UNIQUE)      |            | registration_time      |            | event_name           |
+| password            |            | id (PK)                |            | event_description    |
+| age                 |            +------------------------+            | event_date           |
+| phone_num           |                                                 | location             |
++---------------------+                                                 +----------------------+
 
 ````
 
