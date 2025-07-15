@@ -1,10 +1,9 @@
 const {getDB} = require('../Model/db')
-const express = require('express')
 const bcrypt = require('bcrypt')
-const Joi = require('joi');
+const jwt = require('jsonwebtoken')
 const {validateSignup,validateSignin }= require('../validator/Joi.validator')
-const nodeMailer = require('nodemailer')
 const transporter= require('../Email/email')
+const secret_key = process.env.secret_key
 
 const register = async (req, res) => {
     const db = getDB();
@@ -54,4 +53,48 @@ transporter.sendMail(options,function(err,info){
   }
 }
 
-module.exports = {register}
+
+//Login 
+
+const login = async (req, res) => {
+  const db = getDB();
+  const { email, password } = req.body;
+
+  // 🔍 Validate input
+  const { error } = validateSignin(req.body);
+  if (error) {
+    console.log('Validation error:', error.details);
+    return res.status(400).send(error.details.map(e => e.message)); // Send error messages
+  }
+
+  //  Check if user exists
+  try {
+    const query = `SELECT * FROM user WHERE email = ?`;
+    const db_user = await db.get(query, [email]);
+
+    if (!db_user) {
+      console.log('User not found');
+      return res.status(400).send('Invalid user');
+    }
+
+    //  Compare passwords
+    const passwordMatch = await bcrypt.compare(password, db_user.password);
+
+    if (!passwordMatch) {
+      console.log('Incorrect password');
+      return res.status(400).send('Invalid password');
+    }
+     
+    //  Successful login
+    const jwtToken = jwt.sign(email,secret_key)
+    res.send(jwtToken)
+    console.log(`User ${db_user.name} logged in`);
+    // res.status(200).send(`User ${db_user.name} logged in`);
+  } catch (err) {
+    console.error('Login error:', err);
+    res.status(500).send('Server error');
+  }
+}
+
+
+module.exports = {register,login}
