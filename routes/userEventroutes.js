@@ -9,5 +9,6 @@ Eventrouter.get('/events/:id',authenticateToken,EventController.get_specific_eve
 Eventrouter.post('/events/:event_code',authenticateToken,EventController.Event_register);
 Eventrouter.get('/event/registration',authenticateToken,EventController.get_all_registrations)
 Eventrouter.delete('/events',authenticateToken,EventController.deregister)
+Eventrouter.put('users/:id',authenticateToken,EventController.put_details)
 
 module.exports = {Eventrouter}

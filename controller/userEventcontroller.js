@@ -162,4 +162,33 @@ const deregister = async (req, res) => {
   }
 }
 
-module.exports = {get_all_events,get_specific_event_details,Event_register,get_all_registrations,deregister}
+const put_details = async (req, res) => {
+  const db = getDB();
+  const { id } = req.params;
+  const { name, email, phone_num, age } = req.body;
+
+  try {
+   
+    const existingUser = await db.get(
+      `SELECT id FROM user WHERE email = ? AND id != ?`,
+      [email, id]
+    );
+
+    if (existingUser) {
+      return res.status(409).json({ error: 'Email already in use by another user' });
+    }
+
+    await db.run(
+      `UPDATE user SET name = ?, email = ?, phone_num = ?, age = ? WHERE id = ?`,
+      [name, email, phone_num, age, id]
+    );
+
+    res.status(200).json({ message: 'User updated successfully' });
+
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update user', detail: err.message });
+  }
+}
+
+
+module.exports = {get_all_events,get_specific_event_details,Event_register,get_all_registrations,deregister,put_details}
