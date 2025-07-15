@@ -21,8 +21,25 @@ An Express.js + SQLite backend system that enables authenticated users to view e
 
 🗂️ Folder Structure
 
-```
-├── controller/ │ ├── usercontroller.js │ └── userEventcontroller.js ├── Email/ │ └── email.js ├── Middlewares/ │ └── Jwttoken.js ├── Model/ │ ├── EventManagement.db │ └── db.js ├── routes/ │ ├── userroute.js │ └── userEventroutes.js ├── validator/ │ └── Joi.validator.js ├── app.js ├── package.json └── .env
+
+├── controller/
+│ ├── usercontroller.js
+│ └── userEventcontroller.js
+├── Email/
+│ └── email.js
+├── Middlewares/
+│ └── Jwttoken.js
+├── Model/
+│ ├── EventManagement.db
+│ └── db.js
+├── routes/
+│ ├── userroute.js
+│ └── userEventroutes.js
+├── validator/
+│ └── Joi.validator.js
+├── app.js
+├── package.json
+└── .env
 
 ```
 
@@ -32,7 +49,7 @@ An Express.js + SQLite backend system that enables authenticated users to view e
 
 ### 📘 Tables Overview
 
-```
+
 +---------------------+            +------------------------+            +----------------------+
 |       user          |            |      registration       |            |       events         |
 +---------------------+            +------------------------+            +----------------------+
