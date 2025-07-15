@@ -1,3 +1,6 @@
+Here's your complete, clean, **copy-ready** `README.md` with all formatting fixed (especially the code block and diagram formatting issues):
+
+---
 
 ```markdown
 # 📅 Event Manager API
@@ -8,11 +11,11 @@ An Express.js + SQLite backend system that enables authenticated users to view e
 
 ## 🚀 Key Features
 
-- 🔐 JWT-based user authentication
-- 🗃️ SQLite database with relational schema
-- 🔁 Event registration and deregistration endpoints
-- 📧 Email confirmation via Nodemailer
-- 🧩 Modular architecture (controllers, routes, validators)
+- 🔐 JWT-based user authentication  
+- 🗃️ SQLite database with relational schema  
+- 🔁 Event registration and deregistration endpoints  
+- 📧 Email confirmation via Nodemailer  
+- 🧩 Modular architecture (controllers, routes, validators)  
 
 ---
 
@@ -50,7 +53,7 @@ An Express.js + SQLite backend system that enables authenticated users to view e
 ```
 
 +---------------------+            +------------------------+            +----------------------+
-\|       user          |            |      registration       |           |       events         |
+\|        user         |            |      registration      |            |       events         |
 +---------------------+            +------------------------+            +----------------------+
 \| id (PK)             |◄───────────┤ user\_id (FK)           ├───────────►| id (PK)              |
 \| name                |            | event\_id (FK)          |            | event\_code (UNIQUE)  |
@@ -70,10 +73,10 @@ An Express.js + SQLite backend system that enables authenticated users to view e
 
 ### 🧑 User Routes
 
-| Method | Endpoint   | Description               |
-|--------|------------|---------------------------|
-| POST   | `/signup`  | Create a new user         |
-| POST   | `/login`   | Authenticate & get JWT    |
+| Method | Endpoint   | Description            |
+|--------|------------|------------------------|
+| POST   | `/signup`  | Create a new user      |
+| POST   | `/login`   | Authenticate & get JWT |
 
 ---
 
@@ -166,5 +169,4 @@ node app.js
 Server will start on the port defined in `.env` or default to `3000`.
 
 ---
-
 
