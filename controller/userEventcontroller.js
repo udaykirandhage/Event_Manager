@@ -1,5 +1,5 @@
 const {getDB} = require('../Model/db')
-
+const bcrypt =require('bcrypt')
 
 const get_all_events = async(req,res)=>{
   try {
@@ -164,23 +164,25 @@ const deregister = async (req, res) => {
 
 const put_details = async (req, res) => {
   const db = getDB();
-  const { id } = req.params;
-  const { name, email, phone_num, age } = req.body;
+   const user_id = req.user;
+   //console.log(user_id)
+   const { name, email, phone_num, age, password } = req.body;
 
   try {
    
     const existingUser = await db.get(
-      `SELECT id FROM user WHERE email = ? AND id != ?`,
-      [email, id]
+      `SELECT id FROM user WHERE email = ? `,
+      [email]
     );
 
     if (existingUser) {
       return res.status(409).json({ error: 'Email already in use by another user' });
     }
-
+   const hashedPassword =await bcrypt.hash(password,10)
+   console.log(hashedPassword)
     await db.run(
-      `UPDATE user SET name = ?, email = ?, phone_num = ?, age = ? WHERE id = ?`,
-      [name, email, phone_num, age, id]
+      `UPDATE user SET name = ?, email = ?, phone_num = ?, age = ?,password = ? WHERE email = ?`,
+      [name, email, phone_num, age, hashedPassword, user_id]
     );
 
     res.status(200).json({ message: 'User updated successfully' });
