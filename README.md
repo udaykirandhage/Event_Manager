@@ -1,6 +1,3 @@
-Here's your complete, clean, **copy-ready** `README.md` with all formatting fixed (especially the code block and diagram formatting issues):
-
----
 
 ```markdown
 # 📅 Event Manager API
